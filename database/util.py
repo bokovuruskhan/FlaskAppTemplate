@@ -1,5 +1,4 @@
 from config import MyApp
-from database.model import Group
 from sqlalchemy.exc import SQLAlchemyError
 
 database = MyApp.database
