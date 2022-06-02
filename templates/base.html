@@ -2,22 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FlaskTemplateApp</title>
+    <title>FlaskAppTemplate</title>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="/static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container w-75">
-    <br>
-    <div class="d-flex" style="height:75rem;">
-        <div class="container shadow bg-light p-4 mt-2" style="height:40rem; width:18rem;">
-            {% include "navbar.html" %}
+<div class="container w-100">
+    {% if current_user.is_authenticated %}
+    <div class="row">
+        <div class="col-md-2">
+            <div class="shadow bg-light p-4 mt-2" style="min-height:40rem;">
+                {% include "navbar.html" %}
+            </div>
         </div>
-        <div class="container shadow bg-light p-4 mt-2 ms-4">
-            {% block content %}
-            {% endblock %}
+        <div class="col-md-10">
+            <div class="shadow bg-light p-4 mt-2" style="min-height:30rem;">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
+    {% else %}
+    {% block login %}
+    {% endblock %}
+    {% endif %}
 </div>
 </body>
 </html>

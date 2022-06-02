@@ -1,4 +1,4 @@
-from model import *
+from database import User, Parent, Children
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
@@ -10,5 +10,6 @@ database = MyApp.database
 
 def config():
     admin = Admin(app, name='FlaskTemplateApp', template_mode='bootstrap3')
+    admin.add_view(ModelView(User, database.session, "Пользователь"))
     admin.add_view(ModelView(Parent, database.session, "Родитель"))
     admin.add_view(ModelView(Children, database.session, "Ребенок"))
