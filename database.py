@@ -18,6 +18,10 @@ class User(database.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    @staticmethod
+    def find_by_username(username):
+        return database.session.query(User).filter(User.username == username).first()
+
 
 class Parent(database.Model):
     id = database.Column(database.Integer, primary_key=True)
